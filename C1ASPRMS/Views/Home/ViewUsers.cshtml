@@ -1,0 +1,122 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@model IEnumerable<C1ASPRMS.Models.ViewUsers>
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+        <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/pt-br.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+        <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+        <link href="~/Content/font-awesome.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+        <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+        <link href="~/Content/main.css" rel="stylesheet" />
+        <link href="~/Content/util.css" rel="stylesheet" />
+        <link href="~/Content/icon-font.min.css" rel="stylesheet" />
+        <script>
+        $(function () {
+            $('.datepicker').datepicker({
+                format: 'mm-dd-yyyy',
+                endDate: '+0d',
+                autoclose: true
+            });
+        });
+        </script>
+        <style>
+            table {
+                border-collapse: collapse;
+            }
+
+            table, th, td {
+                border: none;
+                background-color: #000435;
+                text-align: center;
+                font-size: 18px;
+                font-weight: bold;
+                color: white;
+                border-width: 5px !important;
+                border-style: solid !important;
+                border-color: rgba(0, 128, 255, 0.9) !important;
+            }
+
+            .mydiv {
+                background-color: #000435;
+                color: white;
+                font-weight: bold;
+                padding: 7px;
+                margin: 5px;
+                font-size: 12px;
+            }
+
+            h3 {
+                color: white;
+                font-size: 28px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="limiter">
+            <div class="container-login100" style="background-color: #000435;">
+                <div class="wrap-login100 p-t-190 p-b-45" style="display: block;border-radius:25px;margin:12px;width:1200px;padding:18px;background-color:#000435">
+                        <div class="login100-form-avatar">
+                            <img src="~/Content/il.png" alt="AVATAR" />
+                        </div>
+                        <span class="login100-form-title p-t-20 p-b-45">
+                            IRCTC
+                        </span>
+                        <center><h3>REGISTERED USERS</h3></center>
+                        <table class="table table-bordered">
+                            <thead class="thead-dark ">
+                                <tr>
+                                    <th>SR NO:</th>
+                                    <th>NAME</th>
+                                    <th>USERNAME</th>
+                                    <th>EMAIL ADDRESS</th>
+                                    <th>MOBILE NUMBER</th>
+                                    <th>ADDRESS</th>
+                                    <th>GENDER</th>
+                                    <th>DOB</th>
+                                </tr>
+                            </thead>
+                            @foreach (var ViewUsers in Model)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td>@ViewUsers.srno</td>
+                                        <td>@ViewUsers.fn  @ViewUsers.mn  @ViewUsers.ln</td>
+                                        <td>@ViewUsers.username</td>
+                                        <td>@ViewUsers.email</td>
+                                        <th>@ViewUsers.mob</th>
+                                        <td>@ViewUsers.address  @ViewUsers.state  @ViewUsers.country  @ViewUsers.pin</td>
+                                        <td>@ViewUsers.gender</td>
+                                        <td>@ViewUsers.dob</td>
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                </div>
+                </div>
+            </div>
+    </body>
+    </html>

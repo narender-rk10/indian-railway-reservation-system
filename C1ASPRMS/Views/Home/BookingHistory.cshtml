@@ -1,0 +1,369 @@
+﻿@model IEnumerable<C1ASPRMS.Models.BookingHistory>
+
+@{
+    ViewBag.Title = "BookingHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using QRCoder;
+@using System.IO;
+@using System.Drawing;
+@using System.Drawing.Imaging;
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/pt-br.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/util.css" rel="stylesheet" />
+    <link href="~/Content/icon-font.min.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            $('.datepicker').datepicker({
+                format: 'mm-dd-yyyy',
+                endDate: '+0d',
+                autoclose: true
+            });
+        });
+    </script>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: none;
+            background-color: #000435;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border-width: 5px !important;
+            border-style: solid !important;
+            border-color: rgba(0, 128, 255, 0.9) !important;
+        }
+
+        .mydiv {
+            background-color: #000435;
+            color: white;
+            font-weight: bold;
+            padding: 7px;
+            margin: 5px;
+            font-size: 12px;
+        }
+
+        h3 {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        h5 {
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+            padding: 5px;
+            background-color: rgb(0,4,53);
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .slantedd {
+            font-size: 40px;
+            display: flex;
+            color: red;
+            text-transform: uppercase;
+            transform: rotate(-5deg) skew(-5deg);
+        }
+
+        .slantedb {
+            font-size: 40px;
+            color: green;
+            text-transform: uppercase;
+            transform: rotate(-5deg) skew(-5deg);
+        }
+    </style>
+</head>
+<body>
+ 
+        <div class="limiter">
+            <div class="container-login100" style="background-color: #000435;">
+                <div class="wrap-login100 p-t-190 p-b-45" style="display: block;border-radius:25px;margin:12px;width:1200px;padding:18px;background-color:#000435">
+                    <div class="login100-form-avatar">
+                        <img src="~/Content/il.png" alt="AVATAR" />
+                    </div>
+                    <span class="login100-form-title p-t-20 p-b-45">
+                        IRCTC
+                    </span>
+
+
+                    <center><h3>BOOKING TICKET HISTORY</h3></center>
+
+
+                    @using (Html.BeginForm("Export", "Home", FormMethod.Post))
+                    {
+                        <table class="table table-bordered">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th>
+                                        PNR:
+                                    </th>
+                                    <th>
+                                        BOOKING DATE:
+                                    </th>
+                                    <th>
+                                        TRAIN NO:
+                                    </th>
+                                    <th>
+                                        DATE OF JOURNEY:
+                                    </th>
+                                    <th>
+                                        SOURCE:
+                                    </th>
+                                    <th>
+                                        DESTINATION:
+                                    </th>
+                                    <th>
+                                        CLASS:
+                                    </th>
+                                    <th>
+                                        BOOKING STATUS:
+                                    </th>
+                                    <th>
+                                        PAYMENT TYPE:
+                                    </th>
+                                    <th>
+                                        TOTAL FARE:
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pnr)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.bookingdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.trainno)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.doj)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.source)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.destination)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.classes)
+                                    </td>
+                                    <td>
+                                        @if (item.bs != "BOOKED")
+                                        {
+                                            <section>
+                                                <span class="slantedd">@Html.DisplayFor(modelItem => item.bs)</span>
+                                            </section>
+                                        }
+                                        else
+                                        {
+                                            <section>
+                                                <span class="slantedb">@Html.DisplayFor(modelItem => item.bs)</span>
+                                            </section>
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.pay)
+                                    </td>
+                                    <td>
+                                        &#8377;@Html.DisplayFor(modelItem => item.tfare)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10"><center>PASSENGER'S LIST</center></td>
+                                </tr>
+                                <tr>
+                                    @if (item.p1 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.p1)
+                                        </td>
+                                    }
+                                    @if (item.q1 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.q1)
+                                        </td>
+                                    }
+                                    @if (item.s1 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.s1)
+                                        </td>
+                                    }
+                                    <td colspan="4" rowspan="6">
+                                        @using (MemoryStream ms = new MemoryStream())
+                                        {
+                                            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                                            QRCodeData qrCodeData = qrGenerator.CreateQrCode(item.pnr + " " + item.bookingdate + " " + item.trainno + " " + item.doj + " " + item.source + " " + item.destination + " " + item.bs + " " + item.classes + " " + item.tfare + " " + item.pay + " " + item.p1 + " " + item.p2 + " " + item.p3 + " " + item.p4 + " " + item.p5 + " " + item.p6 + item.s1 + " " + item.s2 + " " + item.s3 + " " + item.s4 + " " + item.s5 + " " + item.s6, QRCodeGenerator.ECCLevel.Q);
+                                            QRCode qrCode = new QRCode(qrCodeData);
+                                            // Bitmap qrCodeImage = qrCode.GetGraphic(20);
+                                            // QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(model.ToString(), QRCodeGenerator.ECCLevel.Q);
+                                            using (Bitmap bitMap = qrCode.GetGraphic(20))
+                                            {
+                                                bitMap.Save(ms, ImageFormat.Png);
+                                                ViewBag.QRCodeImage = "data:image/png;base64," + Convert.ToBase64String(ms.ToArray());
+                                            }
+
+                                        }
+                                        @if (ViewBag.QRCodeImage != null)
+                                        {
+                                            <img src="@ViewBag.QRCodeImage" alt="IRCTCQRCode" style="height:250px;width:250px" />
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    @if (item.p2 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.p2)
+                                        </td>
+                                    }
+                                    @if (item.q2 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.q2)
+                                        </td>
+                                    }
+                                    @if (item.s2 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.s2)
+                                        </td>
+                                    }
+                                </tr>
+                                <tr>
+                                    @if (item.p3 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.p3)
+                                        </td>
+                                    }
+                                    @if (item.q3 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.q3)
+                                        </td>
+                                    }
+                                    @if (item.s3 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.s3)
+                                        </td>
+                                    }
+                                </tr>
+                                <tr>
+                                    @if (item.p4 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.p4)
+                                        </td>
+                                    }
+                                    @if (item.q4 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.q4)
+                                        </td>
+                                    }
+                                    @if (item.s4 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.s4)
+                                        </td>
+                                    }
+                                </tr>
+                                <tr>
+                                    @if (item.p5 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.p5)
+                                        </td>
+                                    }
+                                    @if (item.q5 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.q5)
+                                        </td>
+                                    }
+                                    @if (item.s5 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.s5)
+                                        </td>
+                                    }
+                                </tr>
+                                <tr>
+                                    @if (item.p6 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.p6)
+                                        </td>
+                                    }
+                                    @if (item.q6 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.q6)
+                                        </td>
+                                    }
+                                    @if (item.s6 != "NA")
+                                    {
+                                        <td colspan="2">
+                                            @Html.DisplayFor(modelItem => item.s6)
+                                        </td>
+                                    }
+
+                                </tr>
+                                <tr>
+                                    <td colspan="10">
+                                        <input type="radio" name="mypnr" value="@item.pnr" /> DOWMLOAD THIS PDF
+                                    </td>
+                                </tr>
+                            }
+                            </table>
+                        
+                            <input type="submit" id="btnSubmit" class="btn btn-primary" value="DOWNLOAD PDF" />
+
+                    }
+                        </div>
+            </div>
+        </div>
+    
+    </body>
+</html>

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/css/mdb.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/js/mdb.min.js"></script>
+    <style type="text/css">
+        .bs-example {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color:rgb(0,4,53); color:white;">
+        <a href="#" class="navbar-brand">IRCTC</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse2">
+            <div class="navbar-nav">
+                <a href="@Url.Action("ViewUsers", "Home")" class="nav-item nav-link active">VIEW USERS</a>
+                <a href="@Url.Action("AddCancelledTrains", "Home")" class="nav-item nav-link active">ADD TRAIN FOR CANCEL</a>
+                <a href="@Url.Action("FullBookingHistory", "Home")" class="nav-item nav-link active">BOOKING HISTORY</a>
+                <a href="@Url.Action("ViewContact", "Home")" class="nav-item nav-link active">VIEW FEEDBACK</a>
+                <a href="@Url.Action("LogOut", "Home")" class="nav-item nav-link active">LOGOUT</a>
+            </div>
+        </div>
+    </nav>
+
+    <div>@RenderBody()</div>
+    <footer class="page-footer font-small" style="background-color:rgb(0,4,53); color:white;">
+        <div class="footer-copyright text-center py-3">
+            <div>
+                <center>UID:18BSD021 & ROLLNO:15</center>
+            </div>
+            <div>
+                <left>Email: narender.rk10@gmail.com</left>
+                <right>Phone:9320907041</right>
+            </div>
+            <center>Copyright &copy;2020 All rights reserved by "NARENDER KESWANI - SYBVOCSD"</center>
+        </div>
+    </footer>
+</body>
+</html>        

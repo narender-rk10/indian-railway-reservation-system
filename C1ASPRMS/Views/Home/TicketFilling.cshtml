@@ -1,0 +1,501 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>IRCTC TICKET BOOKING</title>
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/util.css" rel="stylesheet" />
+    <link href="~/Content/icon-font.min.css" rel="stylesheet" />
+    <style>
+        table, th, td {
+            border: 3px solid black;
+            background-color: #000435;
+            font-size: 18px;
+            font-weight: bold;
+            color: whitesmoke;
+            padding: 5px;
+            border-width: 5px !important;
+            border-style: solid !important;
+            border-color: rgba(0, 128, 255, 0.9) !important;
+        }
+
+        p{
+            color:white;
+            font-size:18px;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="limiter">
+        <div class="container-login100" style="background-color: #000435;">
+            <div class="wrap-login100 p-t-190 p-b-30" style="display: block;width:auto;border-radius:25px;margin:12px;padding:18px;background-color:#000435">
+                <div class="login100-form-avatar">
+                    <img src="~/Content/il.png" alt="AVATAR" />
+                </div>
+                <span class="login100-form-title p-t-20 p-b-45">
+                    IRCTC
+                </span>
+                <center><h3>TICKETS DETAILS</h3></center>
+                <br>
+                @using (Html.BeginForm("TicketProcessing", "Home", FormMethod.Post))
+                {
+                    <table class="table-bordered">
+                        <tr>
+                            <th>SR.NO.</th>
+                            <th>PASSENGER NAME:</th>
+                            <th>AGE:</th>
+                            <th>GENDER:</th>
+                            <th>BERTH PREFERENCE:</th>
+                            <th>TYPE:</th>
+                        </tr>
+                        <!----SET-1---->
+                        <tr>
+                            <td>
+                                1.
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Name is required">
+                                    <input class="input100" type="text" name="p1" placeholder="Passenger Name">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Age is required">
+                                    <input class="input100" type="number" name="a1" placeholder="Passenger Age">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-birthday-cake"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Gender is required">
+                                    <select name="g1" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="MALE">MALE</option>
+                                        <option value="FEMALE">FEMALE</option>
+                                        <option value="TRANSGENDER">TRANSGENDER</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Prefernce is required">
+                                    <select name="b1" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SL">SIDE LOWER</option>
+                                        <option value="SU">SIDE UPPER</option>
+                                        <option value="LB">LOWER BERTH</option>
+                                        <option value="MB">MIDDLE BERTH</option>
+                                        <option value="UB">UPPER BERTH</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Quota is required">
+                                    <select name="q1" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SENIOR">SENIOR CITIZEN</option>
+                                        <option value="LADIES">LADIES</option>
+                                        <option value="GENERAL">GENERAL</option>
+                                        <option value="DIVYANG">DIVYANG</option>
+                                        <option value="NRI">NRI</option>
+                                        <option value="DEFENSE">DEFENSE</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <!------SET-2--->
+                        <tr>
+                            <td>
+                                2.
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Name is required">
+                                    <input class="input100" type="text" name="p2" placeholder="Passenger Name">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Age is required">
+                                    <input class="input100" type="number" name="a2" placeholder="Passenger Age">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-birthday-cake"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Gender is required">
+                                    <select name="g2" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="MALE">MALE</option>
+                                        <option value="FEMALE">FEMALE</option>
+                                        <option value="TRANSGENDER">TRANSGENDER</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Prefernce is required">
+                                    <select name="b2" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SL">SIDE LOWER</option>
+                                        <option value="SU">SIDE UPPER</option>
+                                        <option value="LB">LOWER BERTH</option>
+                                        <option value="MB">MIDDLE BERTH</option>
+                                        <option value="UB">UPPER BERTH</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Quota is required">
+                                    <select name="q2" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SENIOR">SENIOR CITIZEN</option>
+                                        <option value="LADIES">LADIES</option>
+                                        <option value="GENERAL">GENERAL</option>
+                                        <option value="DIVYANG">DIVYANG</option>
+                                        <option value="NRI">NRI</option>
+                                        <option value="DEFENSE">DEFENSE</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <!----SET-3-->
+                        <tr>
+                            <td>
+                                3.
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Name is required">
+                                    <input class="input100" type="text" name="p3" placeholder="Passenger Name">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Age is required">
+                                    <input class="input100" type="number" name="a3" placeholder="Passenger Age">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-birthday-cake"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Gender is required">
+                                    <select name="g3" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="MALE">MALE</option>
+                                        <option value="FEMALE">FEMALE</option>
+                                        <option value="TRANSGENDER">TRANSGENDER</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Prefernce is required">
+                                    <select name="b3" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SL">SIDE LOWER</option>
+                                        <option value="SU">SIDE UPPER</option>
+                                        <option value="LB">LOWER BERTH</option>
+                                        <option value="MB">MIDDLE BERTH</option>
+                                        <option value="UB">UPPER BERTH</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Quota is required">
+                                    <select name="q3" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SENIOR">SENIOR CITIZEN</option>
+                                        <option value="LADIES">LADIES</option>
+                                        <option value="GENERAL">GENERAL</option>
+                                        <option value="DIVYANG">DIVYANG</option>
+                                        <option value="NRI">NRI</option>
+                                        <option value="DEFENSE">DEFENSE</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <!----SET-4---->
+                        <tr>
+                            <td>
+                                4.
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Name is required">
+                                    <input class="input100" type="text" name="p4" placeholder="Passenger Name">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Age is required">
+                                    <input class="input100" type="number" name="a4" placeholder="Passenger Age">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-birthday-cake"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Gender is required">
+                                    <select name="g4" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="MALE">MALE</option>
+                                        <option value="FEMALE">FEMALE</option>
+                                        <option value="TRANSGENDER">TRANSGENDER</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Prefernce is required">
+                                    <select name="b4" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SL">SIDE LOWER</option>
+                                        <option value="SU">SIDE UPPER</option>
+                                        <option value="LB">LOWER BERTH</option>
+                                        <option value="MB">MIDDLE BERTH</option>
+                                        <option value="UB">UPPER BERTH</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Quota is required">
+                                    <select name="q4" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SENIOR">SENIOR CITIZEN</option>
+                                        <option value="LADIES">LADIES</option>
+                                        <option value="GENERAL">GENERAL</option>
+                                        <option value="DIVYANG">DIVYANG</option>
+                                        <option value="NRI">NRI</option>
+                                        <option value="DEFENSE">DEFENSE</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <!------SET-5--->
+                        <tr>
+                            <td>
+                                5.
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Name is required">
+                                    <input class="input100" type="text" name="p5" placeholder="Passenger Name">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Age is required">
+                                    <input class="input100" type="number" name="a5" placeholder="Passenger Age">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-birthday-cake"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Gender is required">
+                                    <select name="g5" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="MALE">MALE</option>
+                                        <option value="FEMALE">FEMALE</option>
+                                        <option value="TRANSGENDER">TRANSGENDER</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Prefernce is required">
+                                    <select name="b5" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SL">SIDE LOWER</option>
+                                        <option value="SU">SIDE UPPER</option>
+                                        <option value="LB">LOWER BERTH</option>
+                                        <option value="MB">MIDDLE BERTH</option>
+                                        <option value="UB">UPPER BERTH</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Quota is required">
+                                    <select name="q5" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SENIOR">SENIOR CITIZEN</option>
+                                        <option value="LADIES">LADIES</option>
+                                        <option value="GENERAL">GENERAL</option>
+                                        <option value="DIVYANG">DIVYANG</option>
+                                        <option value="NRI">NRI</option>
+                                        <option value="DEFENSE">DEFENSE</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <!----SET-6-->
+                        <tr>
+                            <td>
+                                6.
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Name is required">
+                                    <input class="input100" type="text" name="p6" placeholder="Passenger Name">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Age is required">
+                                    <input class="input100" type="number" name="a6" placeholder="Passenger Age">
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-birthday-cake"></i>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Gender is required">
+                                    <select name="g6" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="MALE">MALE</option>
+                                        <option value="FEMALE">FEMALE</option>
+                                        <option value="TRANSGENDER">TRANSGENDER</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Prefernce is required">
+                                    <select name="b6" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SL">SIDE LOWER</option>
+                                        <option value="SU">SIDE UPPER</option>
+                                        <option value="LB">LOWER BERTH</option>
+                                        <option value="MB">MIDDLE BERTH</option>
+                                        <option value="UB">UPPER BERTH</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Quota is required">
+                                    <select name="q6" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="SENIOR">SENIOR CITIZEN</option>
+                                        <option value="LADIES">LADIES</option>
+                                        <option value="GENERAL">GENERAL</option>
+                                        <option value="DIVYANG">DIVYANG</option>
+                                        <option value="NRI">NRI</option>
+                                        <option value="DEFENSE">DEFENSE</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PAYMENT TYPE:</td>
+                            <td>
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Payment Type is required">
+                                    <select name="pay" class="input100">
+                                        <option value="" selected="selected" disabled="disabled">--- SELECT ONE ---</option>
+                                        <option value="CRCD">CREDIT CARD</option>
+                                        <option value="DRCD">DEBIT CARD</option>
+                                        <option value="UPI">UPI</option>
+                                        <option value="E-WALLET">E-WALLET</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td colspan="2">
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Mobile No. is required">
+                                    <input class="input100" type="number" name="mob" placeholder="Passenger Mobile No." required>
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-phone"></i>
+                                    </span>
+                                </div>
+                            </td>
+
+                            <td colspan="2">
+                                <div class="wrap-input100 validate-input m-b-10" data-validate="Passenger Email is required">
+                                    <input class="input100" type="email" name="emm" placeholder="Passenger Email Address" required>
+                                    <span class="focus-input100"></span>
+                                    <span class="symbol-input100">
+                                        <i class="fa fa-address-book"></i>
+                                    </span>
+                                </div>
+
+                        </tr>
+                    </table>
+
+                    <div class="container-login100-form-btn p-t-10">
+                        <button type="submit" class="login100-form-btn">
+                            BOOK TICKET
+                        </button>
+                    </div>
+                    <br>
+
+                <div>
+                <p>
+                    *This availability is for all berths, not for your preferred berth type. As tickets are booked throughout the country across PRS counters, any confirmed status shown above may decline into RAC/ Waiting List status, while your payment being processed.
+                </p>
+                <p>
+                    *If for any reason, the reservation output details are not displayed on your screen after you have made payments,please check the details in Booking History under My Account in top navigation bar. You may also check your mail for the details of your booking. You are also advised to contact Indian Railways before trying to book your ticket again.
+                </p>
+                <p>
+                    *The ID card will be required during journey. One of the passenger booked on an e-ticket should have any of the nine identity cards(Voter Photo Identity Card / Passport / PAN Card / Driving License issued by a RTO/ Photo Identity card issued by Central / State Govt / Student Photo Identity Card issued by recognized School or College for their students/ Nationalized Bank Passbook with photograph/Credits Cards issued by banks with laminated photograph / Unique Identification Card Aadhaar) during train journey in original.The identification details are required at the time of Tatkal booking.
+                </p>
+                <p>
+                    *This choice shall not be applicable in case confirmed accommodation is not available in the train
+                </p>
+                <p>
+                    *Booking shall be done in PRS in the coach given by the user if seats are available, otherwise the passenger is allotted in any other coach.
+                </p>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
+</body>
+</html>

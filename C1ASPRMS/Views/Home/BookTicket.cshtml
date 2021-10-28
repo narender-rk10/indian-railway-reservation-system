@@ -1,0 +1,214 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/pt-br.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/util.css" rel="stylesheet" />
+    <link href="~/Content/icon-font.min.css" rel="stylesheet" />
+    <script>
+        $(function () {
+            $('.datepicker').datepicker({
+                format: 'mm-dd-yyyy',
+                endDate: '+0d',
+                autoclose: true
+            });
+        });
+    </script>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: none;
+            background-color: #000435;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border-width: 5px !important;
+            border-style: solid !important;
+            border-color: rgba(0, 128, 255, 0.9) !important;
+        }
+
+        .mydiv {
+            background-color: #000435;
+            color: white;
+            font-weight: bold;
+            padding: 7px;
+            margin: 5px;
+            font-size: 12px;
+        }
+
+        h3 {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        body{
+            color:white;
+        }
+        h5 {
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+            padding: 5px;
+            background-color: rgb(0,4,53);
+        }
+    </style>
+</head>
+<body>
+        <div class="limiter">
+            <div class="container-login100" style="background-color: #000435;">
+                <div class="wrap-login100 p-t-190 p-b-30" style="display: block;border-radius:25px;margin:12px;padding:18px; width:auto;background-color:#000435">
+                    <div class="login100-form-avatar">
+                        <img src="~/Content/il.png" alt="AVATAR" />
+                    </div>
+                    <span class="login100-form-title p-t-20 p-b-45">
+                        IRCTC
+                    </span>
+                    <center><h3>TRAIN BOOKING</h3></center>
+                    <br>
+                    @using (Html.BeginForm("SeatAvail", "Home", FormMethod.Post))
+                    {
+                    <div class="wrap-input100 validate-input m-b-10" data-validate="Train Number is required">
+                        <input type="text" id="tno" class="input100" name="tno" vplaceholder="Enter Train no" />
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-train"></i>
+                        </span>
+                    </div>
+
+                    <div class="container-login100-form-btn p-t-10">
+                        <input type="button" class="login100-form-btn" id="tr" onclick="showDiv()" value="TRAIN SEARCH" />
+                    </div>
+
+
+                    <br />
+                    <br />
+                    <div id="welcomeDiv"  style="display:none;">
+                    <center>
+                        SOURCE:<select id="traintab1" class="input100" name="source"></select>
+                        DESTINATION:<select id="traintab2" class="input100" name="destination"></select>
+                        CLASS:<select id="mytraindetails1" class="input100" name="classes"></select>
+                        DATE:<input id="datepicker" class="input100" type="date" name="dt" />
+                        <br />
+                    <input type="SUBMIT"  class="login100-form-btn" value="SEARCH AVAILABILITY" />
+                    </center>
+                        </div>
+                    }
+                    <script>
+                        function showDiv() {
+                            document.getElementById('welcomeDiv').style.display = "block";
+                        }
+                    </script>
+                    <script>
+                        //    var apikey = "oy6qifktqz"; 4e6hh7gpyk
+                       // 7in3bbrv5m
+                        $("#tr").click(function () {
+                            var train_no = $("#tno").val();
+                            var url =
+                                "https://api.railwayapi.com/v2/route/train/" + train_no + "/apikey/ri1xmmaypt/";
+
+                            $.ajax({
+                                method: "GET",
+                                url: url,
+                                success: function (response) {
+                                    console.log(response);
+
+
+                                    var arr = response.route;
+                                    arr.forEach(element => {
+                                        if (element.halt == -1) {
+                                            element.halt = "NA";
+                                        }
+                                        $("#traintab1").append("<option value=" + element.station.name+">" + element.station.name + "</option>");
+                                        $("#traintab2").append("<option value=" + element.station.name+">" + element.station.name + "</option>");
+                                        console.log(element);
+                                    });
+                                },
+
+                                error: function (error) {
+                                    console.log(error);
+                                }
+                            });
+                        });
+                    </script>
+                    <script>
+
+                        var apikey = "oy6qifktqz";
+                     //   var neel;
+
+                        $("#tr").click(function () {
+                            var tno = $("#tno").val();
+                            var url = "https://api.railwayapi.com/v2/name-number/train/" + tno + "/apikey/7in3bbrv5m/";
+                            //var url = " https://api.railwayapi.com/v2/live/train/" + tno + "/station/" + stn + "/date/" + dt + "/apikey/" + apikey + "/";
+                            $.ajax({
+                                method: "GET",
+                                url: url,
+                                success: function (response) {
+                                    console.log(response);
+
+                                    var arr = response.train.classes;
+                                    
+                                    arr.forEach(element1 => {
+                                        if (element1.available == "Y") {
+                                            $("#mytraindetails1").append("<option value=" + element1.code + ">" + element1.name + "</option>");
+                                            console.log(element1);
+                                        }
+                                        });
+
+                                    },
+                                
+                                error: function (error) {
+                                    console.log(error);
+                                }
+                            });
+                        });
+                    </script>
+                    <script>
+                        $(document).ready(function () {
+                            $('#datepicker').datepicker({
+                                dateFormat: "mm-dd-yy",
+                                minDate: getDate(),
+                                maxDate: "+4m"
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="js/sb-admin-2.min.js"></script>
+</body>
+</html>

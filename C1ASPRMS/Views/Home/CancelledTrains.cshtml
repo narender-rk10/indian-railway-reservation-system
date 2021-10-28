@@ -1,0 +1,176 @@
+﻿@{
+    ViewBag.Title = "CancelledTrains";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/util.css" rel="stylesheet" />
+    <link href="~/Content/icon-font.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <style>
+        table, th, th {
+            border: 3px solid black;
+            background-color: #000435;
+            font-size: 18px;
+            font-weight: bold;
+            color: whitesmoke;
+            padding: 5px;
+            border-width: 5px !important;
+            border-style: solid !important;
+            border-color: rgba(0, 128, 255, 0.9) !important;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            padding: 5px;
+        }
+        h5 {
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+            padding: 5px;
+            background-color: rgb(0,4,53);
+        }
+    </style>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+</head>
+<body>
+    @if (TempData["cp"] != null)
+    {
+        <center>
+            <h5>@TempData["cp"]</h5>
+        </center>
+    }
+    <div class="limiter">
+        <div class="container-login100" style="background-color: #000435;">
+            <div class="wrap-login100 p-t-190 p-b-35" style="display: block;border-radius:25px;margin:12px;padding:12px;height:550px;width:350px;background-color:#000435">
+                <div class="login100-form-avatar">
+                    <img src="~/Content/il.png" alt="AVATAR" />
+                </div>
+                <span class="login100-form-title p-t-20 p-b-45">
+                    IRCTC
+                </span>
+                <center><h3>CANCELED TRAINS</h3></center>
+                <br>
+                @using (Html.BeginForm("CheckCancelledTrains", "Home", FormMethod.Post))
+                {
+                    <div class="wrap-input100 validate-input" data-validate="DATE is required">
+                        <input class="input100" type="date" name="cdt" required>
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fas fa-calendar-day"></i>
+                        </span>
+                    </div><br />
+                    <br />
+                    <br />
+                    <div class="container-login100-form-btn p-t-10">
+                        <button type="submit" class="login100-form-btn" id="ct">
+                            CANCELLED TRAINS
+                        </button>
+                    </div>
+                }
+                <br />
+                <br />
+                <!---  <div class="table-responsive pretbl">
+                    <table class="table table-bordered" style="margin-top:10px;background-color :aqua;">
+                        <tbody>
+                            <tr>
+                                <th>TRAIN NUMBER:</th>
+                                <th>TRAIN NAME</th>
+                                <th>TRAIN TYPE:</th>
+                                <th>TRAIN START:</th>
+                                <th>SOURCE STN NAME:</th>
+                                <th>SOURCE STN CODE:</th>
+                                <th>DEST STN NAME:</th>
+                                <th>DEST STN CODE:</th>
+                            </tr>
+                            <tr>
+                                <td id="tnumber"></td>
+                                <td id="tname"></td>
+                                <td id="ttype"></td>
+                                <td id="startt"></td>
+                                <td id="sourcen"></td>
+                                <td id="sourcec"></td>
+                                <td id="destn"></td>
+                                <td id="destc"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> -->
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <script>
+        /*var apikey = "qxdz9i1own";
+
+        $("#ct").click(function () {
+
+            var dt = $("#dt1").val();
+
+            var url = "https://api.railwayapi.com/v2/cancelled/date/13-02-2020/apikey/qxdz9i1own/";
+
+            $.ajax({
+                method: "GET",
+                url: url,
+                success: function (response) {
+                    console.log(response);
+
+
+
+                    var d1 = response.trains;
+
+                    for (var i in d1) {
+                        document.getElementById("#tnumber").innerHTML =  d1[i].number;
+                        document.getElementById("#tname").innerHTML  = d1[i].tname;
+                        document.getElementById("#ttype").innerHTML  = d1[i].ttype;
+                        document.getElementById("#startt").innerHTML  = d1[i].startt;
+                        for (source in d1[i]) {
+                            document.getElementById("#sourcen").innerHTML  = d1[i][source].name;
+                            document.getElementById("#sourcec").innerHTML  = d1[i][source].code;
+                        }
+                        for (dest in d1[i]) {
+                            document.getElementById("#destn").innerHTML = d1[i][dest].name;
+                            document.getElementById("#destc").innerHTML = d1[i][dest].code;
+                        }
+                    }
+
+
+                },
+                     /*    $("#tnumber").html(response.train.number);
+                    $("#tname").html(response.train.name);
+                    $("#ttype").html(response.train.name);
+                    $("#startt").html(response.train.start_time);
+                    $("#sourcen").html(response.train.source.name);
+                    $("#sourcec").html(response.train.source.code);
+                    $("#destn").html(response.train.dest.name);
+                    $("#destc").html(response.train.dest.code);*/
+        error: function (error) {
+            console.log(error);
+        }
+                });
+            });* /
+    </script>
+</body>
+</html>
